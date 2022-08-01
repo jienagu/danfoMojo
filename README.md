@@ -15,6 +15,6 @@
   ## Installation
 
 ```bash
-npm install danfoMojo
+npm install danfomojo
 
 ```
