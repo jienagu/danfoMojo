@@ -70,26 +70,31 @@ const dfd_pivot_wider = (pivot_test,  groupby_cols, at_col, value_col) =>{
 }
 
 
+const removeVals = (input_arr, remove_vals) => {
+        return input_arr.filter(v => {
+          return !remove_vals.includes(v);
+        });
+      }
 
-const dfd_pivot_longer = (input_wide) =>{
+const dfd_pivot_longer = (input_wide, keep_cols, new_col_name = "new_col_name", new_val_name = "new_val_name") =>{
 
-    const keep_cols = ["group", "response"]
-    ary = removeVals(input_wide.axis['columns'],keep_cols)
-    for (let i = 0; i < ary.length; i++) {
-            console.log(["group", "response", ary[i]])
-            df_sel = input_wide.loc({columns: ["group", "response", ary[i]]})
-            console.log(Array(df_sel.shape[0]).fill(ary[i]))
-            df_sel.addColumn("new_col_name", Array(df_sel.shape[0]).fill(ary[i]), {inplace: true})
-            df_sel.rename({[ary[i]]: "new_val_name"}, {inplace: true})
-            if(i ===0){
-                     output_long =  df_sel
-            }else{
-                     output_long = dfd.concat({ dfList: [output_long,df_sel], axis: 0 })
-            }
-    }
-    output_long = output_long.loc({columns: ["group", "response", "new_col_name", "new_val_name" ]})
-    //output_long.sortValues(["group", "response", "new_col_name"], { inplace: true })
-    return(output_long)
+        ary = removeVals(input_wide.axis['columns'],keep_cols)
+
+        for (let i = 0; i < ary.length; i++) {
+                df_sel = input_wide.loc({columns: keep_cols.concat(ary[i])  })
+
+                df_sel.addColumn(new_col_name, Array(df_sel.shape[0]).fill(ary[i]), {inplace: true})
+                df_sel.rename({[ary[i]]: [new_val_name]}, {inplace: true})
+                if(i ===0){
+                         output_long =  df_sel
+                }else{
+                         output_long = dfd.concat({ dfList: [output_long,df_sel], axis: 0 })
+                }
+        }
+
+        output_long = output_long.loc({columns: keep_cols.concat([new_col_name, new_val_name]) })
+
+        return(output_long)
 }
 
 
