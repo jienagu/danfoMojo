@@ -1,0 +1,36 @@
+{
+    "name": "danfomojo",
+    "version": "1.0.0",
+    "description": "DanfoMojo is a javascrip library that provides a series of utility functions to tidy data frame based on danfojs.",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Jiena McLellan",
+    "contributors":[
+        {
+          "name": "Michael Condouris"
+        },
+        {
+          "name": "Sai Im"
+        },
+        {
+            "name": "Shahsuvar Huseyinli"
+        }
+      ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jienagu/danfoMojo.git"
+      },
+      "keywords": [
+        "pandas",
+        "data-analysis",
+        "data-manipulation"
+      ],
+    "dependencies": {
+      "danfojs": "^1.1.1",
+      "lodash": "^4.17.21"
+    }
+  }
+  
