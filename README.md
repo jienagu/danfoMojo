@@ -66,7 +66,7 @@ result.print()
 ### Separate a character column into multiple columns with a regular expression or numeric locations
 
 ```js
-result = dfm.dfd_unite_cols(df, sep_by="date",new_col_name = ["Year", "Month", "Date"], pattern="-")
+result = dfm.dfd_separate_col(df, sep_by="date",new_col_name = ["Year", "Month", "Date"], pattern="-")
 result.print()
 ```
 |    | name   |   age | group   | major   | response   |   date |   year |   month |
